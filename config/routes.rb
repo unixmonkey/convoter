@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :sessions, only: [:create, :destroy]
   resources :conferences
+  resources :slots
 
   resource :home, only: [:show]
 
