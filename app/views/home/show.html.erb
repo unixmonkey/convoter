@@ -2,10 +2,7 @@
 <% @conferences.each do |conference| %>
   <div class='conference'>
     <%= link_to conference do %>
-      <%= conference.name %>
-      <%= conference.year.presence %>
-      <br>
-      <%= [conference.starts_at.to_s(:long_ordinal), conference.starts_at.to_s(:long_ordinal)].join('-') %>
+      <%= render conference %>
     <% end %>
   </div>
 <% end %>

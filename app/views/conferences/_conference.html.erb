@@ -1,0 +1,4 @@
+<%= conference.name %>
+<%= conference.year.presence %>
+<br>
+<%= [conference.starts_at.to_s(:long_ordinal), conference.starts_at.to_s(:long_ordinal)].join('-') %>
