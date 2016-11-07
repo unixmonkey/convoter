@@ -1,2 +1,11 @@
-<h1>Home#show</h1>
-<p>Find me in app/views/home/show.html.erb</p>
+<h1>ConVoter</h1>
+<% @conferences.each do |conference| %>
+  <div class='conference'>
+    <%= link_to conference do %>
+      <%= conference.name %>
+      <%= conference.year.presence %>
+      <br>
+      <%= [conference.starts_at.to_s(:long_ordinal), conference.starts_at.to_s(:long_ordinal)].join('-') %>
+    <% end %>
+  </div>
+<% end %>
