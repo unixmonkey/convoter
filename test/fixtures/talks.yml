@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  references: 
+  title: MyString
+  speaker: MyString
+  speaker_detail: MyText
+  synopsis: MyText
+
+two:
+  references: 
+  title: MyString
+  speaker: MyString
+  speaker_detail: MyText
+  synopsis: MyText

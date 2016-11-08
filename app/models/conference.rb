@@ -7,4 +7,8 @@ class Conference < ApplicationRecord
       Date::DAYNAMES[Time.at(second).wday]
     end
   end
+
+  def slots_by_day
+    slots.to_a.group_by { |slot| slot.name.reverse.split(' ', 4).last.reverse }
+  end
 end

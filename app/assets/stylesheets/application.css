@@ -13,3 +13,11 @@
  *= require_tree .
  *= require_self
  */
+
+.slot h3 {
+  background-color: #DEDEDE;
+}
+
+.talk {
+
+}

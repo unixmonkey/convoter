@@ -36,6 +36,24 @@
     <%= f.datetime_select :ends_at %>
   </div>
 
+  <h2>Slots</h2>
+  <%= f.fields_for :slots do |slot_form| %>
+    <div class="field">
+      <%= slot_form.label :name %>
+      <%= slot_form.text_field :name %>
+    </div>
+
+    <div class="field">
+      <%= slot_form.label :starts_at %>
+      <%= slot_form.datetime_select :starts_at %>
+    </div>
+
+    <div class="field">
+      <%= slot_form.label :ends_at %>
+      <%= slot_form.datetime_select :ends_at %>
+    </div>
+  <% end %>
+
   <div class="actions">
     <%= f.submit %>
   </div>

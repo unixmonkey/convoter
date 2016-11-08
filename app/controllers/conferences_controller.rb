@@ -20,6 +20,7 @@ class ConferencesController < ApplicationController
 
   # GET /conferences/1/edit
   def edit
+    @conference.slots.build unless @conference.slots.present?
   end
 
   # POST /conferences
