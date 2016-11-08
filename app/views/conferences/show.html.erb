@@ -2,19 +2,32 @@
 
 <%= render @conference %>
 
-<% @conference.slots_by_day.each do |day, slots| %>
-  <h2 class='day'><%= day %></h2>
-  <% slots.each do |slot| %>
-    <div class='slot'>
-      <h3><%= slot.name %></h3>
-      <% slot.talks.each do |talk| %>
-        <article class='talk'>
-          <h3><%= talk.title %></h3>
-        </article>
-      <% end %>
+<ul class="nav nav-tabs">
+  <% @conference.slots_by_day.each_with_index do |(day, slots), index| %>
+    <li class="<%= 'active' if index == 0 %>">
+      <a data-toggle="tab" href="#day_<%= index %>"><%= day %></a>
+    </li>
+  <% end %>
+</ul>
+
+<div class="tab-content">
+  <% @conference.slots_by_day.each_with_index do |(day, slots), index| %>
+    <div id="day_<%= index %>" class="tab-pane fade in <%= 'active' if index == 0 %>">
+      <p>
+        <% slots.each do |slot| %>
+          <div class='slot'>
+            <h3><%= slot.name.split(' ', 3).last %></h3>
+            <% slot.talks.each do |talk| %>
+              <article class='talk'>
+                <h4><%= talk.title %></h4>
+              </article>
+            <% end %>
+          </div>
+        <% end %>
+      </p>
     </div>
   <% end %>
-<% end %>
+</div>
 
 <% if current_admin %>
   <p>
