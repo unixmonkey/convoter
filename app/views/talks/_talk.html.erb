@@ -1,0 +1,6 @@
+<article id='talk_<%= talk.id %>' class='talk'>
+  <h4><%= talk.title %> (<a title="<%= talk.voter_names %>"><%= talk.votes.count %> going)</h4>
+  <%= link_to votes_path(talk_id: talk.id), method: :post, remote: true, class: 'im_going btn btn-info', role: 'button' do %>
+    I'm going!
+  <% end %>
+</article>
