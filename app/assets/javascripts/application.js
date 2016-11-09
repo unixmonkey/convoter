@@ -14,4 +14,14 @@
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require turbolinks
+//= require cable
 //= require_tree .
+
+
+
+// $(function() {
+//   console.log($('.im_going').size());
+//   $(document).on('click', '.im_going', function() {
+//     debugger;
+//   });
+// });

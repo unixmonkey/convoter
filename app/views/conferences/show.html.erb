@@ -18,8 +18,11 @@
           <div class='slot'>
             <h3><%= slot.name.split(' ', 3).last %></h3>
             <% slot.talks.each do |talk| %>
-              <article class='talk'>
-                <h4><%= talk.title %></h4>
+              <article id='Talk_<%= talk.id %>' class='talk'>
+                <h4><%= talk.title %> (<a title="<%= talk.voter_names %>"><%= talk.votes.count %> going)</h4>
+                <%= link_to votes_path(talk_id: talk.id), method: :post, remote: true, class: 'im_going btn btn-info', role: 'button' do %>
+                  I'm going!
+                <% end %>
               </article>
             <% end %>
           </div>

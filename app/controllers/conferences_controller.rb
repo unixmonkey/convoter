@@ -1,5 +1,5 @@
 class ConferencesController < ApplicationController
-  before_action :require_admin
+  before_action :require_admin, except: [:show]
   before_action :set_conference, only: [:show, :edit, :update, :destroy]
 
   # GET /conferences
@@ -66,7 +66,7 @@ class ConferencesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_conference
-      @conference = Conference.find(params[:id])
+      @conference = Conference.includes(slots: [:talks]).find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
