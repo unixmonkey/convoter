@@ -1,4 +1,8 @@
-<%= conference.name %>
-<%= conference.year.presence %>
-<br>
-<%= [conference.starts_at.to_s(:long_ordinal), conference.starts_at.to_s(:long_ordinal)].join('-') %>
+<li class="list-group-item">
+  <h2>
+    <%= link_to conference do %>
+      <%= conference.name %>
+      <%= conference.year.presence %>
+    <% end %>
+  </h2>
+</li>

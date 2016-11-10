@@ -1,7 +1,9 @@
 <% @conferences.each do |conference| %>
   <div class='conference'>
-    <%= link_to conference do %>
+    <ul class="list-group">
+
       <%= render conference %>
-    <% end %>
+
+    <ul>
   </div>
 <% end %>
