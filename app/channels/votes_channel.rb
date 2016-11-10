@@ -1,6 +1,6 @@
 class VotesChannel < ApplicationCable::Channel
   def subscribed
-    stream_from("votes_#{current_user.id}_channel")
+    stream_from("votes_channel")
   end
 
   def unsubscribed
