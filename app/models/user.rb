@@ -12,6 +12,10 @@ class User < ApplicationRecord
     end
   end
 
+  def voted_for?(talk)
+    !has_not_voted_for?(talk)
+  end
+
   def has_not_voted_for?(talk)
     talk.votes.pluck(:user_id).exclude?(id)
   end
