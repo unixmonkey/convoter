@@ -9,14 +9,22 @@
   </head>
 
   <body>
-    <div>
-      <% if current_user %>
-        Signed in as <strong><%= current_user.name %></strong>!
-        <%= link_to 'Sign out', signout_path, id: 'sign_out' %>
-      <% else %>
-        <%= link_to 'Sign in with Google', '/auth/google_oauth2', id: 'sign_in' %>
-      <% end %>
-    </div>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <h1>Convoter</h1>
+
+        </div>
+        <p class="navbar-text navbar-right">
+          <% if current_user %>
+            Signed in as <strong><%= current_user.name %></strong>!
+            <%= link_to 'Sign out', signout_path, id: 'sign_out' %>
+          <% else %>
+            <%= link_to 'Sign in with Google', '/auth/google_oauth2', id: 'sign_in' %>
+          <% end %>
+        </p>
+      </div>
+    </nav>
     <div>
       <%= yield %>
     </div>

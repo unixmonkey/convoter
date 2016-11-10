@@ -1,6 +1,14 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
+ .navbar-header h1 {
+   padding-bottom: 1rem;
+ }
+ 
+ .navbar-right {
+   padding: 1rem 2rem 0 0;
+ }
+
 .slot h3 {
   background-color: #DEDEDE;
 }
