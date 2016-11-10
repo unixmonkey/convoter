@@ -22,4 +22,8 @@ $(document).on('turbolinks:load', function() {
     }
     );
   }
+
+  $('.talk h4').on('click', function() {
+    $(this).parent().find('.synopsis').toggleClass('hide');
+  });
 });
