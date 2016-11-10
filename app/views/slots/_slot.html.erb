@@ -1,0 +1,6 @@
+<div class='slot' id='slot_<%= slot.id %>'>
+  <h3><%= slot.name.split(' ', 3).last %></h3>
+  <% slot.talks.each do |talk| %>
+    <%= render partial: 'talks/talk', locals: { talk: talk, current_user: current_user } %>
+  <% end %>
+</div>

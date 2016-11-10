@@ -16,7 +16,7 @@ $(document).on('turbolinks:load', function() {
       received: function(data) {
         console.log('recieved data ', data);
         if (data && data.message == 'votes_updated') {
-          $('#talk_'+data.talk_id).replaceWith(data.html);
+          $('#slot_'+data.slot_id).replaceWith(data.html);
         }
       }
     }

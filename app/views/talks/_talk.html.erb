@@ -1,5 +1,5 @@
 <article id='talk_<%= talk.id %>' class='talk <%= 'going' if current_user.voted_for?(talk) %>'>
-  <h4><%= talk.title %> (<a title="<%= talk.voter_names %>"><%= talk.votes.count %> going</a>)</h4>
+  <h4><%= talk.title %> (<a title="<%= talk.voter_names %>"><%= talk.voter_names %> going</a>)</h4>
   <% if current_user && current_user.has_not_voted_for?(talk) %>
     <%= link_to votes_path(talk_id: talk.id), method: :post, remote: true, class: 'im_going btn btn-info', role: 'button' do %>
       I'm going!
