@@ -5,7 +5,14 @@
   </h4>
 
   <blockquote class='synopsis hide bs-callout'>
-    <footer><cite><%= talk.speaker %></cite></footer>
+    <footer>
+      <cite>
+        <%= talk.speaker.presence %>
+        <% if talk.location %>
+          in <%= talk.location %>
+        <% end %>
+      </cite>
+    </footer>
     <%= talk.synopsis %>
     <div class='speaker-detail well well-sm'>
       <small><%= talk.speaker_detail %></small>

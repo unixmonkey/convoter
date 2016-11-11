@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161108215453) do
+ActiveRecord::Schema.define(version: 20161111161759) do
 
   create_table "conferences", force: :cascade do |t|
     t.text     "description"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20161108215453) do
     t.text     "synopsis"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.string   "location"
     t.index ["slot_id"], name: "index_talks_on_slot_id"
   end
 
