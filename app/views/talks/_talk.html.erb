@@ -1,8 +1,18 @@
 <article id='talk_<%= talk.id %>' class='talk <%= 'going' if current_user && current_user.voted_for?(talk) %>'>
-  <h4><%= talk.title %> (<a title="<%= talk.voter_names %>"><%= talk.votes.count %> going</a>)</h4>
-  <div class='synopsis hide'>
+
+  <h4>
+    <a class='title-link'><%= talk.title %></a>
+    (<a title="<%= talk.voter_names %>"><%= talk.votes.count %> going</a>)
+  </h4>
+
+  <blockquote class='synopsis hide bs-callout'>
+    <footer><cite><%= talk.speaker %></cite></footer>
     <%= talk.synopsis %>
-  </div>
+    <blockquote class='speaker-detail'>
+      <%= talk.speaker_detail %>
+    </blockquote>
+  </blockquote>
+
   <small><%= talk.voter_names if talk.votes.any? %></small>
   <% if current_user && current_user.has_not_voted_for?(talk) %>
     <%= link_to votes_path(talk_id: talk.id), method: :post, remote: true, class: 'im_going btn btn-info', role: 'button' do %>

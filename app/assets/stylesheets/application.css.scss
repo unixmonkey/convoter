@@ -5,7 +5,7 @@
    padding-bottom: 1rem;
  }
 
- .navbar-right {
+ .navbar-text {
    padding: 1rem 2rem 0 0;
  }
 
@@ -13,13 +13,12 @@
   background-color: #DEDEDE;
 }
 
-.talk h4:hover {
-  text-decoration: underline;
+.talk {
+  border-bottom: 1px solid #dedede;
 }
 
-.talk.going h4 {
+.talk.going h4 a {
   color: red;
-  margin-bottom: 0;
 }
 
 .talk small {

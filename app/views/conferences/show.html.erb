@@ -4,7 +4,7 @@
 
 <ul class="nav nav-tabs">
   <% @conference.slots_by_day.each_with_index do |(day, slots), index| %>
-    <li class="<%= 'active' if index == 0 %>">
+    <li class="<%= 'active' if index == 1 %>">
       <a data-toggle="tab" href="#day_<%= index %>"><%= day %></a>
     </li>
   <% end %>
@@ -12,7 +12,7 @@
 
 <div class="tab-content">
   <% @conference.slots_by_day.each_with_index do |(day, slots), index| %>
-    <div id="day_<%= index %>" class="tab-pane fade in <%= 'active' if index == 0 %>">
+    <div id="day_<%= index %>" class="tab-pane fade in <%= 'active' if index == 1 %>">
       <p>
         <%= render slots %>
       </p>
