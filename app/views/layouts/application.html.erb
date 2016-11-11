@@ -12,10 +12,10 @@
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header">
-          <h1>Convoter</h1>
+          <a class="navbar-brand" href="/">Convoter</a>
 
         </div>
-        <p class="navbar-text navbar-right">
+        <p class="navbar-text">
           <% if current_user %>
             Signed in as <strong><%= current_user.name %></strong>!
             <%= link_to 'Sign out', signout_path, id: 'sign_out' %>
