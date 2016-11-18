@@ -23,7 +23,7 @@ $(document).on('turbolinks:load', function() {
     );
   }
 
-  $('.title-link').on('click', function() {
+  $(document).on('click', '.title-link', function() {
     $(this).closest('article').find('.synopsis').toggleClass('hide');
   });
 });
