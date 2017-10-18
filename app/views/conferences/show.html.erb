@@ -4,7 +4,7 @@
 
 <ul class="nav nav-tabs nav-justified">
   <% @conference.slots_by_day.each_with_index do |(day, slots), index| %>
-    <li class="<%= 'active' if index == 2 %>">
+    <li class="<%= 'active' if index == 0 %>">
       <a data-toggle="tab" href="#day_<%= index %>"><%= day %></a>
     </li>
   <% end %>
