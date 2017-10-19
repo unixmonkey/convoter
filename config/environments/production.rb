@@ -34,7 +34,7 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
   config.action_dispatch.default_headers = {
-    'X-Frame-Options' => 'ALLOW-FROM http://www.convoter.com'
+    'X-Frame-Options' => 'ALLOWALL'
   }
 
   # Mount Action Cable outside main process or domain
