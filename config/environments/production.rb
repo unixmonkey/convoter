@@ -33,9 +33,6 @@ Rails.application.configure do
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
-  config.action_dispatch.default_headers = {
-    'X-Frame-Options' => 'ALLOWALL'
-  }
 
   # Mount Action Cable outside main process or domain
   # config.action_cable.mount_path = nil
@@ -45,7 +42,13 @@ Rails.application.configure do
   config.action_cable.allowed_request_origins = [
     'https://convoter.herokuapp.com',
     'http://convoter.herokuapp.com',
-    /https?:\/\/convoter\.herokuapp\.com.*/
+    /https?:\/\/convoter\.herokuapp\.com.*/,
+    'https://convoter.convoter.com',
+    'http://convoter.convoter.com',
+    /https?:\/\/convoter\.convoter\.com.*/,
+    'https://www.convoter.com',
+    'http://www.convoter.com',
+    /https?:\/\/www\.convoter\.com.*/
   ]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
