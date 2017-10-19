@@ -1,9 +1,12 @@
+<h1 class="upcoming-title">Upcoming conferences:</h1>
 <% @conferences.each do |conference| %>
   <div class='conference'>
     <ul class="list-group">
-
       <%= render conference %>
-
     <ul>
   </div>
 <% end %>
+
+<div id="credit">
+  <small>A <a href="http://www.fretless.com"><%= image_tag 'fretless-120-2.png' %></a>jam.</small>
+</div>
