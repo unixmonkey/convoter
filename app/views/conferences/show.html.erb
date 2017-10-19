@@ -12,7 +12,7 @@
 
 <div class="tab-content">
   <% @conference.slots_by_day.each_with_index do |(day, slots), index| %>
-    <div id="day_<%= index %>" class="tab-pane fade in <%= 'active' if index == 2 %>">
+    <div id="day_<%= index %>" class="tab-pane fade in <%= 'active' if index == 0 %>">
       <div>
         <%= render slots %>
       </div>
