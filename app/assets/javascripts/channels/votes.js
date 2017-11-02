@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load', function() {
+$(document).on('ready turbolinks:load', function() {
   var loggedIn = $('#sign_out').size() > 0;
   if (loggedIn) {
     App.votes = App.cable.subscriptions.create({
