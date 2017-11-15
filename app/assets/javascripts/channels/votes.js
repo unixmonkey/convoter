@@ -22,8 +22,8 @@ $(document).on('ready turbolinks:load', function() {
     }
     );
   }
+});
 
-  $(document).on('click', '.title-link', function() {
-    $(this).closest('article').find('.synopsis').toggleClass('hide');
-  });
+$(document).on('click', '.title-link', function() {
+  $(this).closest('article').find('.synopsis').toggleClass('hide');
 });
