@@ -11,6 +11,7 @@ class ConferencesController < ApplicationController
   # GET /conferences/1
   # GET /conferences/1.json
   def show
+    session[:current_conference_id] = params[:id]
     @day_index = session["conference_#{params[:id]}_current_day"]
   end
 
