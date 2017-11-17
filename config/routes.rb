@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   get 'signout', to: 'sessions#destroy', as: 'signout'
 
   resources :sessions, only: [:create, :destroy]
-  resources :conferences
+  resources :conferences do
+    member do
+      get 'set_day(/:day)', to: 'conferences#set_day'
+    end
+  end
   resources :slots
   resources :votes, only: [:create, :destroy]
 

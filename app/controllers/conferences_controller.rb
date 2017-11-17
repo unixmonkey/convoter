@@ -1,6 +1,6 @@
 class ConferencesController < ApplicationController
-  before_action :require_admin, except: [:show]
-  before_action :set_conference, only: [:show, :edit, :update, :destroy]
+  before_action :require_admin, except: [:show, :set_day]
+  before_action :set_conference, only: [:show, :edit, :update, :destroy, :set_day]
 
   # GET /conferences
   # GET /conferences.json
@@ -11,6 +11,7 @@ class ConferencesController < ApplicationController
   # GET /conferences/1
   # GET /conferences/1.json
   def show
+    @day_index = session["conference_#{params[:id]}_current_day"]
   end
 
   # GET /conferences/new
@@ -61,6 +62,11 @@ class ConferencesController < ApplicationController
       format.html { redirect_to conferences_url, notice: 'Conference was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def set_day
+    session["conference_#{params[:id]}_current_day"] = params[:day]
+    head :no_content
   end
 
   private
