@@ -1,15 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  day: one
+  conference_id: conferences(:one).id
+  name: '10:00 - 10:45am'
   conference: one
   starts_at: 2016-11-07 16:56:01
   ends_at: 2016-11-07 16:56:01
 
 two:
-  name: MyString
-  day: two
+  conference_id: conferences(:one).id
+  name: '11:00 - 11:45am'
   conference: two
   starts_at: 2016-11-07 16:56:01
   ends_at: 2016-11-07 16:56:01

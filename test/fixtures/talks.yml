@@ -1,14 +1,14 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  references: 
+  slot_id: slots(:one).id
   title: MyString
   speaker: MyString
   speaker_detail: MyText
   synopsis: MyText
 
 two:
-  references: 
+  slot_id: slots(:one).id
   title: MyString
   speaker: MyString
   speaker_detail: MyText
