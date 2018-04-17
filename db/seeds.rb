@@ -82,4 +82,4 @@ class ScrapeConf < Mechanize
     end
   end
 end
-ScrapeConf.new.process
+# ScrapeConf.new.process
