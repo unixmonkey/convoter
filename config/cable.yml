@@ -7,3 +7,4 @@ test:
 production:
   adapter: redis
   url: redis://redistogo:84a71b06e3f568ed340be01870ac9084@sculpin.redistogo.com:9938/
+  channel_prefix: convoter_production
