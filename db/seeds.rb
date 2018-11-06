@@ -59,16 +59,23 @@ class ScrapeConf < Mechanize
       title = slot_detail.search('a.special-label').text.strip
       puts "process special slot (keynote): #{time_range} #{title}"
       location = slot_detail.search('.schedule-special-container.keynote span.special-location').text.strip
+      slot.talks.where(
+        title: title,
+        speaker: speaker,
+        location: location,
+        keynote: true
+      ).first_or_create
     else # a break
       title = slot_detail.search('span.special-label').text.strip
       puts "process special slot (break): #{time_range} #{title}"
       location = slot_detail.search('.schedule-special-container span.special-location').text.strip
+      slot.talks.where(
+        title: title,
+        speaker: speaker,
+        location: location,
+        break: true
+      ).first_or_create
     end
-    slot.talks.where(
-      title: title,
-      speaker: speaker,
-      location: location,
-    ).first_or_create
   end
 
   def process_slot(slot_detail, day_name)

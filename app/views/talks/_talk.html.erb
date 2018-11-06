@@ -13,10 +13,12 @@
         <% end %>
       </cite>
     </footer>
-    <%= simple_format talk.synopsis %>
-    <div class='speaker-detail well well-sm'>
-      <small><%= talk.speaker_detail %></small>
-    </div>
+    <% unless talk.break? || talk.keynote? %>
+      <%= simple_format talk.synopsis %>
+      <div class='speaker-detail well well-sm'>
+        <small><%= talk.speaker_detail %></small>
+      </div>
+    <% end %>
   </blockquote>
 
   <% if talk.votes.any? %>
