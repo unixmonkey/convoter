@@ -7,6 +7,12 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 class ScrapeConf < Mechanize
+  RUBYCONF_2018_DATES = {
+    "tuesday" => "2018-11-13",
+    "wednesday" => "2018-11-14",
+    "thursday" => "2018-11-15",
+  }
+
   def process
     get('http://rubyconf.org/schedule')
     page.search('div.js-schedule-day').each_with_index do |day_detail, index|
@@ -30,18 +36,49 @@ class ScrapeConf < Mechanize
     day_of_week = day_detail.attr('id')
     day_name = page.search("a.rc-schedule-nav__link[href='##{day_of_week}']").text.strip.split("\n").last.strip
     puts day_name
-    day_detail.search('div.schedule-cell, div.schedule-cell-special').each_with_index do |slot_detail, index|
+    day_detail.search('div.schedule-cell').each_with_index do |slot_detail, index|
       puts "processing day: #{day_name}"
       process_slot(slot_detail, day_name)
     end
+    day_detail.search('div.schedule-cell-special').each_with_index do |slot_detail, index|
+      puts "processing day: #{day_name}"
+      process_special_slot(slot_detail, day_name)
+    end
+  end
+
+  def process_special_slot(slot_detail, day_name)
+    slot_start = slot_detail.search('.schedule-time strong').text.strip
+    slot_end = slot_detail.search('.schedule-time small').text.strip
+    time_range = "#{slot_start}#{slot_end}"
+    date = RUBYCONF_2018_DATES[day_name.downcase]
+    puts "processing slot: #{time_range}"
+    puts "starts #{date} #{slot_start}"
+    slot = conf.slots.where(name: [day_name, time_range].join(' ')).first_or_create(starts_at: "#{date} #{slot_start}", ends_at: "#{date} #{slot_end}")
+    speaker = slot_detail.search('.schedule-special-container.keynote span.special-speaker').text.strip
+    if speaker.present? # a keynote
+      title = slot_detail.search('a.special-label').text.strip
+      puts "process special slot (keynote): #{time_range} #{title}"
+      location = slot_detail.search('.schedule-special-container.keynote span.special-location').text.strip
+    else # a break
+      title = slot_detail.search('span.special-label').text.strip
+      puts "process special slot (break): #{time_range} #{title}"
+      location = slot_detail.search('.schedule-special-container span.special-location').text.strip
+    end
+    slot.talks.where(
+      title: title,
+      speaker: speaker,
+      location: location,
+    ).first_or_create
   end
 
   def process_slot(slot_detail, day_name)
     slot_start = slot_detail.search('.schedule-time strong').text.strip
     slot_end = slot_detail.search('.schedule-time small').text.strip
     time_range = "#{slot_start}#{slot_end}"
+    date = RUBYCONF_2018_DATES[day_name.downcase]
     puts "processing slot: #{time_range}"
-    slot = conf.slots.where(name: [day_name, time_range].join(' ')).first_or_create
+    puts "starts #{date} #{slot_start}"
+    slot = conf.slots.where(name: [day_name, time_range].join(' ')).first_or_create(starts_at: "#{date} #{slot_start}", ends_at: "#{date} #{slot_end}")
     slot_detail.search('div').each_with_index do |talk_detail, index|
       process_talk(talk_detail, slot)
     end
@@ -64,17 +101,6 @@ class ScrapeConf < Mechanize
             speaker_detail = talk.search('.session-speaker p').text.strip
           end
         end
-      end
-    else
-      puts "\n", "SPECIAL SPECIAL SPECIAL", "\n"
-      speaker = talk_detail.search('.schedule-special-container.keynote span.special-speaker').text.strip
-      if speaker.present? # a keynote
-        title = talk_detail.search('a.special-label').text.strip
-        location = talk_detail.search('.schedule-special-container.keynote span.special-location').text.strip
-        link = talk_detail.search('a.special-label')
-      else # a break
-        title = talk_detail.search('span.special-label').text.strip
-        location = talk_detail.search('.schedule-special-container span.special-location').text.strip
       end
     end
     return if [title, speaker, speaker_detail, synopsis, location].all?(&:blank?)
