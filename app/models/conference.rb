@@ -1,5 +1,5 @@
 class Conference < ApplicationRecord
-  has_many :slots, -> { order(:id) }
+  has_many :slots, -> { order(:starts_at) }
   scope :upcoming, -> { where arel_table[:ends_at].gt(Time.now) }
 
   def daynames
