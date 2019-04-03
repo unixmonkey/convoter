@@ -48,6 +48,7 @@
   },
   "name": "convoter",
   "scripts": {
+    "postdeploy": "bin/rails db:migrate db:seed"
   },
   "stack": "heroku-18"
 }
