@@ -11,8 +11,8 @@ class ConferencesController < ApplicationController
   # GET /conferences/1
   # GET /conferences/1.json
   def show
-    session[:current_conference_id] = params[:id]
-    @day_index = session["conference_#{params[:id]}_current_day"]
+    session[:current_conference_id] = @conference.id
+    @day_index = session["conference_#{@conference.id}_current_day"]
   end
 
   # GET /conferences/new
@@ -66,7 +66,7 @@ class ConferencesController < ApplicationController
   end
 
   def set_day
-    session["conference_#{params[:id]}_current_day"] = params[:day]
+    session["conference_#{@conference.id}_current_day"] = params[:day]
     head :no_content
   end
 
