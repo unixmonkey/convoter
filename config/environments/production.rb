@@ -55,7 +55,10 @@ Rails.application.configure do
     /https?:\/\/convoter\.convoter\.com.*/,
     'https://www.convoter.com',
     'http://www.convoter.com',
-    /https?:\/\/www\.convoter\.com.*/
+    /https?:\/\/www\.convoter\.com.*/,
+    'https://convoter-staging.herokuapp.com',
+    'http://convoter-staging.herokuapp.com',
+    /https?:\/\/convoter-staging\.herokuapp\.com.*/
   ]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
