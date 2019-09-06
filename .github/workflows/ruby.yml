@@ -9,13 +9,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+
     - name: Set up Ruby 2.6
       uses: actions/setup-ruby@v1
       with:
         ruby-version: 2.6.3
-    - name: Install sqlite-dev
-      run: |
-        apt-get install -y libsqlite3-dev
+
+    - uses: harmon758/postgresql-action@v1
+      with:
+        postgresql version: '11'
+
     - name: Run tests with Rake
       run: |
         gem install bundler
