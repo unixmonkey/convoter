@@ -7,10 +7,10 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 class ScrapeConf < Mechanize
-  RUBYCONF_2018_DATES = {
-    "tuesday" => "2018-11-13",
-    "wednesday" => "2018-11-14",
-    "thursday" => "2018-11-15",
+  RUBYCONF_2019_DATES = {
+    "tuesday" => "2019-11-18",
+    "wednesday" => "2019-11-19",
+    "thursday" => "2019-11-20",
   }
 
   def process
@@ -26,9 +26,9 @@ class ScrapeConf < Mechanize
   def conf
     @conf ||= Conference.where(
       name: 'RubyConf',
-      year: '2018',
-      starts_at: Time.parse('2018-11-13 09:30:00'),
-      ends_at: Time.parse('2018-11-15 18:00'),
+      year: '2019',
+      starts_at: Time.parse('2019-11-18 09:30:00'),
+      ends_at: Time.parse('2019-11-20 18:00'),
     ).first_or_create!
   end
 
@@ -50,7 +50,7 @@ class ScrapeConf < Mechanize
     slot_start = slot_detail.search('.schedule-time strong').text.strip
     slot_end = slot_detail.search('.schedule-time small').text.strip
     time_range = "#{slot_start}#{slot_end}"
-    date = RUBYCONF_2018_DATES[day_name.downcase]
+    date = RUBYCONF_2019_DATES[day_name.downcase]
     puts "processing slot: #{time_range}"
     puts "starts #{date} #{slot_start}"
     slot = conf.slots.where(name: [day_name, time_range].join(' ')).first_or_create(starts_at: "#{date} #{slot_start}", ends_at: "#{date} #{slot_end}")
@@ -82,7 +82,7 @@ class ScrapeConf < Mechanize
     slot_start = slot_detail.search('.schedule-time strong').text.strip
     slot_end = slot_detail.search('.schedule-time small').text.strip
     time_range = "#{slot_start}#{slot_end}"
-    date = RUBYCONF_2018_DATES[day_name.downcase]
+    date = RUBYCONF_2019_DATES[day_name.downcase]
     puts "processing slot: #{time_range}"
     puts "starts #{date} #{slot_start}"
     slot = conf.slots.where(name: [day_name, time_range].join(' ')).first_or_create(starts_at: "#{date} #{slot_start}", ends_at: "#{date} #{slot_end}")
@@ -104,7 +104,7 @@ class ScrapeConf < Mechanize
         if page && href
           talk = page.search(".session").select{|t| t.search("a[href='##{href.split('#').last}']").present? }.last
           if talk
-            synopsis = talk.search('p').first.text.strip
+            synopsis = talk.search('p')[1].text.strip
             speaker_detail = talk.search('.session-speaker p').text.strip
           end
         end
