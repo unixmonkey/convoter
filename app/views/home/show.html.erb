@@ -1,33 +1,40 @@
-<div class="container">
-  <div class="jumbotron">
-    <h1 class="display-3">Easily manage and share your schedule at a conference!</div>
-    <p class="lead">
-      Big conferences have many tracks to choose from. Make the most of your time.
-      <ul>
-        <li>Which talks do you want to see most in the same time slot?</li>
-        <li>Which ones will your friends be at?</li>
-      </ul>
-    </p>
-    <p class="lead">
-      Convoter allows you to easily plan your day and make changes on a whim!
-    </p>
-    <% if current_user.blank? %>
+<div class="content">
+  <div class="container">
+    <div class="jumbotron">
+      <h1 class="display-3">Easily manage and share your schedule at a conference!</div>
       <p class="lead">
-        <%= link_to 'Start Planning', '/auth/google_oauth2', class: 'btn btn-primary btn-lg' %>
+        Big conferences have many tracks to choose from. Make the most of your time.
+        <ul>
+          <li>Which talks do you want to see most in the same time slot?</li>
+          <li>Which ones will your friends be at?</li>
+        </ul>
       </p>
-    <% end %>
+      <p class="lead">
+        Convoter allows you to easily plan your day and make changes on a whim!
+      </p>
+      <% if current_user.blank? %>
+        <p class="lead">
+          <%= link_to 'Start Planning', '/auth/google_oauth2', class: 'btn btn-primary btn-lg' %>
+        </p>
+      <% end %>
+    </div>
   </div>
+
+  <h1 class="upcoming-title">Upcoming conferences:</h1>
+  <% @conferences.each do |conference| %>
+    <div class='conference'>
+      <ul class="list-group">
+        <%= render conference %>
+      <ul>
+    </div>
+  <% end %>
 </div>
 
-<h1 class="upcoming-title">Upcoming conferences:</h1>
-<% @conferences.each do |conference| %>
-  <div class='conference'>
-    <ul class="list-group">
-      <%= render conference %>
-    <ul>
+<footer>
+  <div id="credit">
+    A
+    <%= link_to 'rubyjams.org', 'http://rubyjams.org' %>
+    jam.
+    <%= link_to image_tag('rubyjams.png', alt: "jar of jam rubyjams logo", align: "top"), 'http://rubyjams.org' %>
   </div>
-<% end %>
-
-<!--div id="credit">
-  <small>A <a href="http://www.fretless.com"><%= image_tag 'fretless-120-2.png' %></a>jam.</small>
-</div-->
+</footer>
