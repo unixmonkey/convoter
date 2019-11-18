@@ -14,7 +14,7 @@ $(document).on('ready turbolinks:load', function() {
       },
 
       received: function(data) {
-        console.log('recieved data ', data);
+        console.log('received data ', data);
         if (data && data.message == 'votes_updated') {
           $('#slot_'+data.slot_id).replaceWith(data.html);
         }
