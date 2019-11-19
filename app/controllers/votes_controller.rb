@@ -3,11 +3,12 @@ class VotesController < ApplicationController
     talk = Talk.find(params[:talk_id])
     talk.slot.votes.where(user_id: current_user.id).destroy_all
     current_user.votes.create(talk_id: params[:talk_id])
-    head :ok
+    redirect_to conference_path(talk.slot.conference)
   end
 
   def destroy
-    current_user.votes.where(talk_id: params[:talk_id]).destroy_all
-    head :ok
+    vote = current_user.votes.find_by(id: params[:id])
+    vote&.destroy
+    redirect_to conference_path(vote&.talk&.slot&.conference)
   end
 end

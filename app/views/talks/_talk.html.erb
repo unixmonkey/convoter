@@ -25,11 +25,15 @@
     <small><%= talk.voter_names %> going</small>
   <% end %>
 
-  <% if current_user && current_user.has_not_voted_for?(talk) %>
-    <div class='text-right'>
-      <%= link_to votes_path(talk_id: talk.id), method: :post, remote: true, class: 'im_going btn btn-info', role: 'button' do %>
+  <div class='text-right'>
+    <% if current_user && current_user.has_not_voted_for?(talk) %>
+      <%= link_to votes_path(talk_id: talk.id), method: :post, remote: false, class: 'im_going btn btn-info', role: 'button' do %>
         I'm going!
       <% end %>
-    </div>
-  <% end %>
+    <% elsif current_user && current_user.voted_for?(talk) %>
+      <%= link_to vote_path(current_user.votes.find_by(talk: talk)), method: :delete, remote: false, class: 'not_going btn btn-default', role: 'button' do %>
+        Not going
+      <% end %>
+    <% end %>
+  </div>
 </article>

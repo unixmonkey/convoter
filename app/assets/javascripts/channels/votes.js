@@ -7,6 +7,8 @@ $(document).on('ready turbolinks:load', function() {
     {
       connected: function() {
         console.log('connected');
+        // should update too catch you up on what you missed
+        // while offline
       },
 
       disconnected: function () {
