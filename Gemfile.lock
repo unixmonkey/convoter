@@ -164,7 +164,8 @@ GEM
       omniauth (~> 1.9)
     orm_adapter (0.5.0)
     pg (1.1.4)
-    puma (3.12.6)
+    puma (4.3.8)
+      nio4r (~> 2.0)
     racc (1.5.2)
     rack (2.2.3)
     rack-test (1.1.0)
@@ -274,7 +275,7 @@ DEPENDENCIES
   omniauth
   omniauth-google-oauth2
   pg
-  puma (~> 3.12)
+  puma (~> 4.3)
   rails (~> 6.0.0)
   redis (~> 3.0)
   sass-rails (~> 5.0)
